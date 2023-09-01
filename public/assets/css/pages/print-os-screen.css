@@ -1,0 +1,105 @@
+  /* 58mm x 210mm */
+
+
+/* @page { size: 58mm 210mm;} */
+.receipt .sheet {
+    width: 58mm;
+    margin: 5mm auto !important;
+    font-family: 'Roboto', sans-serif;
+    padding-right: 2mm;
+    padding-left:2mm;
+
+}
+
+/* .px-1mm {
+    padding-right: 1mm;
+    padding-left: 1mm;
+} */
+
+
+
+.sheet header {
+    margin: 10px auto;
+    text-align: center;
+}
+
+.sheet header h1 {
+    margin-top: 10px;
+}
+
+.sheet table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.sheet th,
+.sheet  td,
+.sheet  .order-items {
+    text-align: left;
+    font-size: 9pt;
+    padding: 2.5px 5px;
+}
+
+/* .order-items .components td,
+.order-items .main-item td {
+    border: 1px solid rgb(134, 134, 134);
+} */
+
+.sheet  .main-description td.title {
+    width: 24mm;
+}
+
+
+.sheet .store-address, .sheet .store-others{
+    font-size: 9pt;
+}
+
+
+.sheet  .logo {
+    height: 60px;
+    width: 60px;
+}
+
+.sheet .dine-in::before {
+    /* content: 'DINE IN'; */
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    border-bottom: 3px double #a3a3a3;
+    border-top: 3px double #a3a3a3
+}
+
+.sheet  .order-items .components {
+    display: table-row-group;
+}
+
+.sheet .order-items .components .pax {
+    padding-left: 8px;
+}
+
+.sheet .order-items .components .pax::before {
+    content: "(";
+    display: inline;
+}
+
+.sheet .order-items .components .pax::after {
+    content: ")";
+    display: inline;
+}
+
+.sheet .order-items .main-item+.components::after {
+    content: '';
+    display: block;
+    height: 15px;
+}
+
+.sheet  .order-items .price {
+    text-align: right;
+    display: none;
+}
+
+.sheet footer{
+    font-size: 9.5pt;
+}

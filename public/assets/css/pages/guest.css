@@ -1,0 +1,31 @@
+.number {
+        position: absolute; 
+        top: 0;
+        left: 0; 
+        border-radius: 0; 
+        height: 35px;
+        width: 35px;
+        padding-top:5px;
+        font-size: 1.5em;
+}
+
+img.avatar{
+
+}
+
+.avatar-card{
+    flex-basis: 200px !important ;
+}
+
+@media(max-width:767px){
+    .avatar-card{
+        flex-basis: 400px !important ;
+    }
+}
+   
+@media(max-width:575px){
+    .custom-col-pad{
+        padding-right: 2.5px !important;
+        padding-left: 2.5px !important;
+    }
+}

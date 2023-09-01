@@ -1,0 +1,26 @@
+@media print {
+    
+    .receipt {
+        width: 58mm;
+        padding-bottom: 20px;
+        
+        font-family: 'Roboto', sans-serif;
+        padding-right: 0!important;
+        padding-left:0!important;
+      
+    }
+
+    .receipt .sheet{
+        /* margin: 5mm auto !important; */
+    }
+    @page {
+        margin: 0 !important;
+        width: 58mm;
+    }
+
+    #print {
+        display: none;
+    }
+
+    
+}

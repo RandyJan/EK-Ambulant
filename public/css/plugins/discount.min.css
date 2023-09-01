@@ -1,0 +1,14 @@
+.discount{
+    position: absolute;
+    right: -29%;
+    margin-top: -12px;
+}
+
+.discounted{
+    position: absolute;
+    right: -29%;
+    margin-top: -12px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
