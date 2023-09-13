@@ -35,7 +35,7 @@
             .sticky-side {
                 display: none;
             }
-            
+
         }
         /* .modal-full {
             min-width: 20%;
@@ -93,7 +93,7 @@
         .cart-item:hover{
             cursor:pointer;
         }
-        
+
 
     </style>
 
@@ -218,7 +218,7 @@
     </div>
 
     @include('pages.mealstub.mealstub_modal')
-    
+
  <!-- Print Modal  -->
  <div class="modal fade h-100" id="print-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-full h-100"  role="document">
@@ -227,17 +227,17 @@
                 <span aria-hidden="true">×</span>
             </button> -->
             <div class="modal-body" id="modal-body">
-                
-                <iframe id="os-iframe"src="/orderslip/print-preview" class="h-75" target="_parent" width="100%" height="80%" frameborder="0" allowTransparency="true"></iframe>
+
+                <iframe id="os-iframe"src="/orderslip/print-preview" class="h-75" target="_parent" width="100%" height="80%" frameborder="0" allowTransparency="true" ></iframe>
                 <button id="btn-Print" class="btn btn-lg btn-block btn-primary mt-6" onclick="printDiv('print-content')">PRINT</button>
             </div>
         </div>
     </div>
 </div>
-    
+
 
     {{-- END OF CONTENT --}}
-   
+
 
     <script src="/assets/js/vendor.js"></script>
     <script src="/assets/js/app.min.js"></script>
@@ -260,7 +260,7 @@
      <script src="/js/config.js"></script>
      <script src="/assets/js/JsBarcode.all.min.js"></script>
      <script src="/assets/js/qrcode.min.js"></script>
-     
+
      <script>
 
         $('#btn-Print').on('click',function(){
@@ -268,8 +268,8 @@
                 window.location.href = '/';
         });
         $('#print-modal').modal('handleUpdate');
-        
-    </script>   
+
+    </script>
     <!-- page js -->
     <script>
         $(document).ready(function() {
@@ -687,7 +687,11 @@
                             showLoaderOnConfirm: true,
 
                             preConfirm: (input) => {
-                                return input;
+                                return new Promise((resolve) => {
+
+                                resolve (input);
+
+                            });
                             },
                             allowOutsideClick: () => !Swal.isLoading()
                         }).then((result) => {
@@ -698,55 +702,71 @@
 
                                 post('/orderslip/headcount', data, function(ress){
                                     console.log('ge',ress);
-                                
+
                                     // showSuccess('',ress.message);
                                     if(ress.success == false){
                                         showError('', ress.message, function () {});
                                         return;
                                     }
-                                    
+
 
                                     data._method = 'PATCH';
                                     post('/orderslip/set-duration', data, function(ress){
                                         console.log(ress);
-                                        $( '#os-iframe' ).attr( 'src', function ( i, val ) { return val; });
-                                        $('#print-modal').modal('show');
-                                    
+
+
+                                        $( '#os-iframe' ).attr('src', function (i, val) {
+                                                return val;
+                                            }).on('load', function() {
+                                                $(this).get(0).contentWindow.print();
+                                            });
+
+                                        //    test();
+                //                         $("#os-iframe").get(0).contentWindow.print();
+                // window.location.href = '/';
+
 
                                         // showSuccess('',ress.message);
                                     });
 
-                                    
-                                   
+
+
                                 });
-                                
-                                
+
+
+
                             }
+
                         });
                      return;
-                        
+
                     }
-                   
-                    data._method = 'PATCH';
+                    printiftheresvalue();
+                    function printiftheresvalue() {
+                        data._method = 'PATCH';
                     post('/orderslip/set-duration', data, function(ress){
                         // console.log(ress);
                         // redirect('/orderslip/print-preview');
-                        $('#print-modal').modal('show');
-                        // showSuccess('',ress.message);
-                        
-                    });
-                   
+                        console.log('test3');
+                        $("#os-iframe").get(0).contentWindow.print();
 
-                   
+                        // showSuccess('',ress.message);
+
+                    });
+
+
+                    }
+
+
+
 
                 });
-                
-                
+
 
 
             });
         }
-        
+
 
 
         //=======================

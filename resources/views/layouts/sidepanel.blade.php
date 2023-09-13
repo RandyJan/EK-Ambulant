@@ -118,8 +118,10 @@
                     data-device-id="{{ Auth::user()->activeOrder()->device_no }}"
                 >
                     <div class="py-3">
-                        <a class="text-white text-opacity" href="javascript:void(0);">Checkout</a>
+                        {{-- <a class="text-white text-opacity" href="javascript:void(0);">CHECKOUT</a> --}}
+                        <button id="Headcount" class="py-3 text-white text-opacity bg-primary" style="border:none" href="javascript:void(0);">CHECKOUT</button>
                     </div>
+
                 </div>
                 <div class="col-6 d-flex align-items-center justify-content-center border right"
                     id="btn-add-instruction"
@@ -630,7 +632,9 @@
 </div>
 
 
-<!-- <iframe id="printPdf" name="printPdf"></iframe> -->
+<!-- <iframe id="printPdf" name="
+
+    Pdf"></iframe> -->
 <!-- <div class="modal fade" id="print-billl" tabindex="-1" role="dialog" aria-labelledby="guest-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">

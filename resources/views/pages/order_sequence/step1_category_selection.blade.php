@@ -11,15 +11,10 @@
         </ol>
     </nav>
     <br>
-    {{-- group_id == 'BV1DP' || $group->group_id == 'DS1CU' || $group->group_id == 'DS1DE' --}}
+
     <div class="row">
         @if( $groups->count() > 0)
             @foreach($groups as $group)
-
-
-
-
-
             <div class="col-4 col-sm-3 col-md-2 py-0 px-1 mb-2">
                 <a href="{{ route('categories.products', ['group' => $group->group_id]) }}">
                     <div class="card h-100 mb-0 group espire" data-category="{{ $group->group_id }}">

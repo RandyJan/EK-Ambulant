@@ -123,7 +123,7 @@ iframe { border: 0; }
 
 @media only screen and (max-width: 767px) { iframe { min-height: 175px !important; height: auto; } }
 
-@media print { body { font-size: 10px; }
+@media print { body { font-size: 10px; }.absolute
   .mrg-top-30, .mrg-top-20 { margin-top: 15px !important; }
   .print-invisible { display: none; } }
 
@@ -3614,7 +3614,7 @@ glyphs.character-mapping { margin: 0 0 20px 0; padding: 20px 0 20px 30px; color:
   font-size: .875rem;
   line-height: 1.5;
   border-radius: .2rem;
-} 
+}
 
 .btn-group>.btn-group:not(:first-child)>.btn, .btn-group>.btn:not(:first-child) {
   border-top-left-radius: 0;

@@ -302,7 +302,7 @@
                         <div id="qrcode" data-barcode="{{trim(Auth::user()->activeOrder()->os_no)}}"></div>
                     @else
                         <div class="barcode-cont"  data-barcode-val="{{ trim(Auth::user()->activeOrder()->os_no) }}">
-                            <svg class="barcode" 
+                            <svg class="barcode"
                                 jsbarcode-format="{{ strtolower(request()->cookie('barcode_type')) }}"
                                 jsbarcode-value="{{ trim(Auth::user()->activeOrder()->os_no) }}"
                                 jsbarcode-textPosition="top"
@@ -311,7 +311,7 @@
                                 jsbarcode-height="60"
                                 jsbarcode-width="2"
                                 jsbarcode-fontSize="20"
-                                
+
                                 >
                             </svg>
                         </div>
@@ -327,7 +327,7 @@
         <!--End InvoiceBot-->
     </div>
     @endif
-    
+
 
 
     <!--End Invoice-->
@@ -337,10 +337,15 @@
      <script src="/js/config.js"></script>
      <script src="/assets/js/JsBarcode.all.min.js"></script>
      <script src="/assets/js/qrcode.min.js"></script>
-     
+
     <script>
+           const myinterval = setInterval(refresh, 1000);
+
+function refresh() {
+    $('#os-iframe').load(document.URL + " #os-iframe");
+}
         $(document).ready(function () {
-   
+
             $barcode_container = $('.barcode-cont');
             if($barcode_container != null){
                 // JsBarcode(".barcode").init();
@@ -378,13 +383,13 @@
                     redirectTo('/');
                 }, 3000);
             }
-           
+
             // }else{
                     // w=window.open();
                     // w.document.write(printContents);
                     // w.print();
                     // w.close();
-                   
+
                 // console.log(window.print);
                 // window.print();
                 // if (window.matchMedia) {
@@ -396,7 +401,7 @@
                 //         redirectTo('/');
                 //     }
                 // });
-          
+
             // }
 
 
