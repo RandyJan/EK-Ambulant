@@ -719,8 +719,10 @@
                                                 return val;
                                             }).on('load', function() {
                                                 $(this).get(0).contentWindow.print();
+
                                             });
 
+                                            window.location.href = '/'
                                         //    test();
                 //                         $("#os-iframe").get(0).contentWindow.print();
                 // window.location.href = '/';
@@ -747,7 +749,7 @@
                     post('/orderslip/set-duration', data, function(ress){
                         // console.log(ress);
                         // redirect('/orderslip/print-preview');
-                        console.log('test3');
+                        // console.log('test3');
                         $("#os-iframe").get(0).contentWindow.print();
 
                         // showSuccess('',ress.message);
