@@ -119,7 +119,7 @@
                 >
                     <div class="py-3">
                         {{-- <a class="text-white text-opacity" href="javascript:void(0);">CHECKOUT</a> --}}
-                        <button id="Headcount" class="py-3 text-white text-opacity bg-primary" style="border:none" href="javascript:void(0);">CHECKOUT</button>
+                        <button id="headcount" class="py-3 text-white text-opacity bg-primary" style="border:none" href="javascript:void(0);" >CHECKOUT</button>
                     </div>
 
                 </div>

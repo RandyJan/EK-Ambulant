@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\OrderSlipHeader;
-use App\Services\BranchLastIssuedNumberServices as BLIN;
-use Auth;
 use DB;
-use Log;
-use App\Helpers\Helper;
+use Auth;
 use App\Table;
-use App\Http\Resources\Table as TableResource;
-use App\Http\Resources\Postmix as PostmixResource;
-use App\Http\Resources\TableCollection;
-use App\GuestFile;
 use App\OnDuty;
-use App\TableHistory;
-use App\OrderSlipDetail;
-use App\SitePart;
-use App\OrderslipTable;
 use App\Postmix;
 use App\Mealstub;
-
-use App\Http\Resources\OrderSlipHeader as OrderSlipHeaderResource;
-use App\Http\Resources\OSDEtailCollection;
+use App\SitePart;
+use App\GuestFile;
 use Carbon\Carbon;
+use App\TableHistory;
+use App\Helpers\Helper;
+use App\OrderslipTable;
+use App\OrderSlipDetail;
+use App\OrderSlipHeader;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Resources\TableCollection;
+use App\Http\Resources\OSDEtailCollection;
+use App\Http\Resources\Table as TableResource;
+
+use App\Http\Resources\Postmix as PostmixResource;
+use App\Services\BranchLastIssuedNumberServices as BLIN;
+use App\Http\Resources\OrderSlipHeader as OrderSlipHeaderResource;
 
 class OrderslipController extends Controller
 {
@@ -856,12 +856,12 @@ class OrderslipController extends Controller
                             $osd2->os_date                       = getClarionDate(now());
                             $osd2->display_kds                   = 1;
                             $osd2->dev_id_mod                    = $dev_no_mod;
-                            
+
                             $osd2->save();
                             $net_amount += $osd2->net_amount;
                             $line_number++;
                         }
-                      
+
                     }
 
                     if( isset($other->others) ){
@@ -1672,6 +1672,7 @@ class OrderslipController extends Controller
             ->update([
                 'STATUS' => 'X'
             ]);
+            Log::info('update successfull');
 
             // check kung gusto na mapapaid ung mealstub pagcheckout
             if(config('ambulant.auto_paid_mealstub') == 1){

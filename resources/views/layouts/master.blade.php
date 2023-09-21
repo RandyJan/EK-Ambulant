@@ -636,26 +636,7 @@
                     pageMargins: [5, 25, 5, 5],
                 };
 
-                // pdfMake.createPdf(docDefinition).print();
-                // const pdfDocGenerator = pdfMake.createPdf(docDefinition);
-                // pdfDocGenerator.getDataUrl((dataUrl) => {
-                //     const targetElement = document.querySelector('#iframeContainer');
-                //     const iframe = document.createElement('iframe');
-                //     iframe.src = dataUrl;
-                //     targetElement.appendChild(iframe);
-                // });
-                // pdfMake.createPdf(docDefinition).print({}, window.frames['printPdf']);
 
-
-                // post('/orderslip/print', {}, function(response) {
-                //     console.log(response.message);
-                //     if( response.success == false){
-                //         return;
-                //     }
-                //     showSuccess('',response.message, function(){
-
-                //     });
-                // });
 
                 var self = $(this);
 
@@ -714,16 +695,21 @@
                                     post('/orderslip/set-duration', data, function(ress){
                                         console.log(ress);
 
+                                        $('#os-iframe').attr('src', function (i, val) {
+    return val;
+}).on('load', function() {
+    $('#os-iframe').get(0).contentWindow.print();
 
-                                        $( '#os-iframe' ).attr('src', function (i, val) {
-                                                return val;
-                                            }).on('load', function() {
-                                                $(this).get(0).contentWindow.print();
+    var handlePrintDialogClose = function() {
+        console.log('Print dialog closed');
+        window.location.href = '/';
+        window.removeEventListener('focus', handlePrintDialogClose);
+    };
+    window.addEventListener('focus', handlePrintDialogClose);
+});
 
-                                            });
 
-                                            window.location.href = '/'
-                                        //    test();
+                                 //    test();
                 //                         $("#os-iframe").get(0).contentWindow.print();
                 // window.location.href = '/';
 
@@ -751,7 +737,12 @@
                         // redirect('/orderslip/print-preview');
                         // console.log('test3');
                         $("#os-iframe").get(0).contentWindow.print();
-
+                        var handlePrintDialogClose = function() {
+        console.log('Print dialog closed');
+        window.location.href = '/';
+        window.removeEventListener('focus', handlePrintDialogClose);
+    };
+    window.addEventListener('focus', handlePrintDialogClose);
                         // showSuccess('',ress.message);
 
                     });
