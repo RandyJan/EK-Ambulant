@@ -207,11 +207,11 @@
                             },
                             inputValidator: (input)=>{
                                 if(input<=0){
-                                    return 'Quantity is invalid'
+                                    return 'Please input correct headcount'
                                 }
                             },
                             onBeforeOpen: (input) => {
-    input.value = '';
+    input.value = 1;
   },
                             showCancelButton: true,
                             confirmButtonText: 'Save',
@@ -558,14 +558,14 @@
                         Swal.fire({
                             title: 'Enter HeadCount',
                             input: 'number',
-                            inputValue: '',
+                            inputValue: 1,
                             inputAttributes: {
                                 autocapitalize: 'off',
                                 min: 1
                             },
                             inputValidator: (input)=>{
                                 if(input<=0){
-                                    return 'Quantity is invalid'
+                                    return 'Please input correct headcount'
                                 }
                             },
                             showCancelButton: true,
@@ -606,7 +606,7 @@
 
     var handlePrintDialogClose = function() {
         console.log('Print dialog closed');
-        window.location.href = '/';
+        window.location.href = '{{ route('orderslip.create') }}';
         window.removeEventListener('focus', handlePrintDialogClose);
     };
     window.addEventListener('focus', handlePrintDialogClose);
@@ -630,7 +630,7 @@
                         $("#os-iframe").get(0).contentWindow.print();
                         var handlePrintDialogClose = function() {
         console.log('Print dialog closed');
-        window.location.href = '/';
+        window.location.href = '{{ route('orderslip.create') }}';
         window.removeEventListener('focus', handlePrintDialogClose);
     };
     window.addEventListener('focus', handlePrintDialogClose);
