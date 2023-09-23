@@ -606,7 +606,7 @@
 
     var handlePrintDialogClose = function() {
         console.log('Print dialog closed');
-        window.location.href = '{{ route('orderslip.create') }}';
+        window.location.href = '/';
         window.removeEventListener('focus', handlePrintDialogClose);
     };
     window.addEventListener('focus', handlePrintDialogClose);
@@ -625,7 +625,7 @@
                     printiftheresvalue();
                     function printiftheresvalue() {
                         data._method = 'PATCH';
-                    post('/orderslip/set-duration', data, function(ress){
+                    post('/', data, function(ress){
 
                         $("#os-iframe").get(0).contentWindow.print();
                         var handlePrintDialogClose = function() {
