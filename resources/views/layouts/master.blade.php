@@ -37,14 +37,7 @@
             }
 
         }
-        /* .modal-full {
-            min-width: 20%;
-            margin-left: 80;
-        }
 
-        .modal-full .modal-content {
-            min-height: 100vh;
-        } */
 
         @media(min-width:600px) {
             .sticky-side {
@@ -116,93 +109,15 @@
 
                 @include('layouts.theme-config')
 
-                <!-- Theme Toggle Button START -->
-                {{-- <button class="theme-toggle btn btn-rounded btn-icon">
-                    <i class="ti-palette"></i>
-                </button> --}}
-                <!-- Theme Toggle Button END -->
 
-                <!-- Content Wrapper START -->
-                {{-- <div class="main-content">
-                    <div class="container-fluid">
-                        @yield('content')
-                    </div>
-                </div> --}}
 
 
                 <div class="main-content d-flex justify-content-between">
-                    <!-- <div class="content-container"> -->
+
                         <div class="container-fluid">
                             @yield('content')
                         </div>
-                    <!-- </div> -->
 
-                   {{--<div class="sticky-side border" style="">
-
-                        <div class="side-content " style="overflow-y: auto; height: 90%">
-                            <table class="table table-responsive-sm table-borderless disable-select" id="cart-order">
-                                <thead>
-                                    <tr class="font-size-13">
-                                        <td>#</td>
-                                        <td>Name</td>
-                                        <td>Price</td>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="font-size-13 clickable" data-toggle="collapse" id="row2" data-target=".row2">
-                                        <td>99</td>
-                                        <td>HALF ROASTED CHICKEN MEAL</td>
-                                        <td>375.00</td>
-
-                                    </tr>
-                                    <tr class="collapse row2 editable">
-                                        <td>1</td>
-                                        <td>COCA COLA</td>
-                                        <td>20.00</td>
-
-                                    </tr>
-                                    <tr class="collapse  row2">
-                                        <td>1</td>
-                                        <td>Half Roasted Chicken</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr class="collapse  row2">
-                                        <td>1</td>
-                                        <td>Side DISH 1</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <!--  -->
-                                    <tr class="font-size-13" data-toggle="collapse" id="row2" data-target=".row3">
-                                        <td>2</td>
-                                        <td>CHEESEDOG SANDWICH</td>
-                                        <td>100.00</td>
-                                    </tr>
-                                    <tr class="collapse row3 editable">
-                                        <td>1</td>
-                                        <td>COCA COLA</td>
-                                        <td>20.00</td>
-
-                                    </tr>
-                                    <tr class="collapse  row3 editable">
-                                        <td>1</td>
-                                        <td>Pineapple</td>
-                                        <td>30.00</td>
-                                    </tr>
-                                    <tr class="collapse  row3 editable">
-                                        <td>2</td>
-                                        <td>CHEESEDOGS</td>
-                                        <td>0</td>
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-
-
-                        </div>
-
-                    </div>--}}
 
 
                 </div>
@@ -223,8 +138,7 @@
  <div class="modal fade h-100" id="print-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-full h-100"  role="document">
         <div class="modal-content h-100">
-            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
+
             </button> -->
             <div class="modal-body" id="modal-body">
 
@@ -246,15 +160,10 @@
 
     <script src="/bower_components/selectize/dist/js/standalone/selectize.min.js"></script>
     <script src="/bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.7.1/dist/sweetalert2.all.min.js"></script> --}}
-
-    {{-- <script src="/js/plugins/pdfmake.min.js"></script> --}}
-    <script src="/assets/js/sweetalert2@9.7.1.min.js"></script>
+     <script src="/assets/js/sweetalert2@9.7.1.min.js"></script>
     <script src="/js/plugins/vfs_fonts.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.60/vfs_fonts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.60/pdfmake.min.js"></script> --}}
-    <script src="/js/config.js"></script>
-    <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+   <script src="/js/config.js"></script>
+    <script src="/js/jquery-ui.js"></script>
 
     <script src="/assets/js/vendor.js"></script>
      <script src="/js/config.js"></script>
@@ -313,13 +222,12 @@
 
                         }).then((result) => {
                             if (result.value) {
-                                // console.log(result);
+
                                 data._method = 'PATCH';
                                 data.head_count = result.value;
 
                                 post('/orderslip/headcount', data, function(ress){
-                                    // console.log(ress);
-                                    // showSuccess('',ress.message);
+
                                 });
                                 const Toast = Swal.mixin({
                                 toast: true,
@@ -356,7 +264,7 @@
             });
 
             $('#breakdown').on('click.show.bs.collapse', function(){
-                // alert();
+
                 var self = $(this);
 
                 var data = {
@@ -367,7 +275,7 @@
                 };
 
                 post('/orderslip-info', data, function(res){
-                    // console.log(res);
+
                     var cart = $('#collapseCart');
 
                     cart.find('#container_cart').empty();
@@ -378,12 +286,11 @@
                         `);
 
 
-                    });    // cart..collapse('show');
+                    });
                 });
             });
 
-            /*  Getting Customer Info */
-            /*  When user click customer-info button */
+
             $('#customer-info').on('click',function(){
                 $('#modal-customer-info').modal('show');
                 $('#modal-customer-info #save_info').prop('disabled', true);
@@ -402,14 +309,13 @@
                     customer_name: $('#modal-customer-info input[name=customer_name]').val(),
                     bdate : $('#modal-customer-info input[name=bdate]').val()
                     }
-                    // console.log(data);
 
 
 
                     /**Save to Database */
                     post('/customer-info',data, function(response) {
 
-                        // console.log(response);
+
                         if (response.success == false) {
                             showError('', response.message, function() {});
                             return;
@@ -434,8 +340,7 @@
             resetActiveOrder();
 
             showGuestModalInfo();
-            // saveGuestInfo();
-            // changeType();
+
             print();
             btnInstruction();
 
@@ -443,9 +348,9 @@
         });
 
         function resetActiveOrder(){
-            // /orderslip/resetActiveOrder
+
             let data = "{{ isset ( Auth::user()->activeOrder()['OSDATE'] ) ?  Auth::user()->activeOrder()['OSDATE'] : null }}";
-            // console.log('resetActiveOrder',data);
+
             post('/orderslip/resetActiveOrder', {}, function(res){
                 if(res.success == false){
                     showError('', res.message, function() {});
@@ -470,7 +375,6 @@
                 $('#guest-number').text('Guest #' + guest_number + ' ').data("guestNo", guest_number);
                 $('#os-no').text(os_no).data("osNo", os_no);
                 $('#table-no').text(table_no).data("tableNo", table_no);
-                // console.log(e.relatedTarget, $("#guest-number").data(),  $('#os-no').data(),  $('#table-no').data() );
 
 
                 // set selected checkbox based on the guest type
@@ -517,8 +421,7 @@
                 }
 
 
-                // console.log(guest_name, guest_id, guest_address, guest_tin);
-                // populate the creds fields
+
                 $('#guest-modal input#guest-name').val(guest_name);
                 $('#guest-modal input#guest-discid').val(guest_id);
                 $('#guest-modal input#guest-address').val(guest_address);
@@ -550,7 +453,6 @@
                 let table_no = $('#guest-modal #table-no').data("tableNo");
                 let os_no = $('#guest-modal #os-no').data("osNo");
 
-                // console.log('saveGuestInfo: ', guest_name, guest_id, guest_address, guest_tin);
 
                 let data = {
                     os_no: os_no,
@@ -648,7 +550,7 @@
                 };
 
                 post('/orderslip-info', data, function(res){
-                    // console.log(data, res);
+
                     if( res.header.total_hc == null || res.header.total_hc <= 0){
                         Swal.fire({
                             title: 'Enter HeadCount',
@@ -684,7 +586,6 @@
                                 post('/orderslip/headcount', data, function(ress){
                                     console.log('ge',ress);
 
-                                    // showSuccess('',ress.message);
                                     if(ress.success == false){
                                         showError('', ress.message, function () {});
                                         return;
@@ -707,19 +608,8 @@
     };
     window.addEventListener('focus', handlePrintDialogClose);
 });
-
-
-                                 //    test();
-                //                         $("#os-iframe").get(0).contentWindow.print();
-                // window.location.href = '/';
-
-
-                                        // showSuccess('',ress.message);
-                                    });
-
-
-
-                                });
+ });
+   });
 
 
 
@@ -733,9 +623,7 @@
                     function printiftheresvalue() {
                         data._method = 'PATCH';
                     post('/orderslip/set-duration', data, function(ress){
-                        // console.log(ress);
-                        // redirect('/orderslip/print-preview');
-                        // console.log('test3');
+
                         $("#os-iframe").get(0).contentWindow.print();
                         var handlePrintDialogClose = function() {
         console.log('Print dialog closed');
@@ -743,7 +631,7 @@
         window.removeEventListener('focus', handlePrintDialogClose);
     };
     window.addEventListener('focus', handlePrintDialogClose);
-                        // showSuccess('',ress.message);
+
 
                     });
 
@@ -825,38 +713,7 @@
         }
 
         function dblClick() {
-            /*
-            $('.cart-detail-item').on('click', function() {
-                var $button = $(this);
-                if ($button.data('alreadyclicked')) {
-                    $button.data('alreadyclicked', false); // reset
 
-
-                    if ($button.data('alreadyclickedTimeout')) {
-                        clearTimeout($button.data('alreadyclickedTimeout')); // prevent this from happening
-                    }
-                    // do what needs to happen on double click.
-                    $(this).find('[data-toggle="popover"]').popover('hide');
-
-                    $('.cart-detail-item [data-toggle="popover"]').popover('hide');
-
-                    console.log("redirect oi to edit the osdetail");
-                } else {
-                    $button.data('alreadyclicked', true);
-
-                    var alreadyclickedTimeout = setTimeout(function() {
-                        $button.data('alreadyclicked', false); // reset when it happens
-                        // do what needs to happen on single click.
-                        // use $button instead of $(this) because $(this) is
-                        // no longer the element
-                        let current_popover = $($button).find('[data-toggle="popover"]');
-                        current_popover.popover('show');
-                    }, 300); // <-- dblclick tolerance here
-                    $button.data('alreadyclickedTimeout', alreadyclickedTimeout); // store this id to clear if necessary
-                }
-                return false;
-            });
-            */
             $('.cart-item > td').not('.cart-remove').on('click', function() {
                 var $button = $(this);
                 if ($button.data('alreadyclicked')) {
@@ -868,7 +725,7 @@
                     }
                     // do what needs to happen on double click.
 
-                    // console.log("redirect oi to edit the osdetail");
+
                     btnProductEdit($(this).parent());
                 } else {
                     $button.data('alreadyclicked', true);
@@ -900,7 +757,7 @@
                 product_id : self.data('product-id'),
                 mealstub_product_id: self.data('mealstub-product-id'),
                 sequence : self.data('sequence'),
-                // _method : 'DELETE'
+
             };
 
             post('/orderslip/is_paid', data, function (res) {
@@ -925,7 +782,7 @@
                     confirmButtonText: 'Yes, Please Remove!'
                     }).then((result) => {
                         if (result.value) {
-                            // console.log('remove remove');
+
                             post('/orderslip/remove-selected-item',
                                 data,
                                 function(ress){
@@ -944,7 +801,7 @@
             });
 
 
-            // console.log(data);
+
 
 
 
@@ -1089,20 +946,17 @@
                 }
 
             });
-
-
-
-        }
+     }
 
         function updateOStypeMealstub(data, modal){
             data._method = 'PATCH';
             post('/mealstub/update_os_type', data, function(ress){
-                // console.log('update', ress);
+
                 if(ress.success == false){
                     showError('', ress.message, function () {
 
                     });
-                    // console.log('update failed', ress);
+
                     return;
                 }
                 modal.modal("toggle");

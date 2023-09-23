@@ -27,11 +27,7 @@
                                             </div>
                                     </div>
                                     <ul class="list tick bullet-primary p-2 nmc accordion border-less" role="tablist" aria-multiselectable="true">
-                                        {{-- <li>Lorem ipsum dolor sit amet</li>
-                                        <li>Consectetur adipiscing elit</li>
-                                        <li>Integer molestie lorem at massa</li>
-                                        <li>Facilisis in pretium nisl aliquet</li>
-                                        <li>Nulla volutpat aliquam velit </li> --}}
+
                                     </ul>
                             </div>
                             <div class="col-md-6">
@@ -40,99 +36,13 @@
                                     <label for="is_takeout">Takeout</label>
                                 </div>
 
-                                <!-- <div class="mrg-top-30 border bottom">
-                                    <div class="radio radio-inline radio-primary">
-                                        <input value="1" type="radio" name="guest-type" id="form-5-1" checked="">
-                                        <label for="form-5-1">Regular</label>
-                                    </div>
-                                    <div class="radio radio-inline radio-primary">
-                                        <input value="2" type="radio" name="guest-type" id="form-5-2" >
-                                        <label for="form-5-2">Senior</label>
-                                    </div>
-                                    <div class="radio radio-inline radio-primary">
-                                        <input value="3" type="radio" name="guest-type" id="form-5-3">
-                                        <label for="form-5-3">Pwd</label>
-                                    </div>
 
-                                    <div class="input-icon form-group">
-                                        <i class="ti-face-smile"></i>
-                                        <input id="guest-no" min="1" type="number" class="form-control m-b" placeholder="Enter Guess No." value="1">
-                                        <small>Enter Guess no.</small>
-                                    </div>
-
-                                </div> -->
 
                                 <div class="components-container">
-                                    {{-- <div class="mrg-top-0">
-                                        <div id="accordion-ask-2" class="accordion border-less" role="tablist" aria-multiselectable="true">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading" role="tab">
-                                                    <h4 class="panel-title">
-                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion-ask-2" href="#collapse-ask-2" aria-expanded="false">
-                                                            <span>Product Component(1)</span>
-                                                            <i class="icon ti-arrow-circle-down"></i>
-                                                        </a>
-                                                    </h4>
-                                                </div>
-                                                <div id="collapse-ask-2" class="panel-collapse collapse" style="">
-                                                    <div class="panel-body">
-                                                        <div class="row border bottom">
-                                                            <div class="col-md-8">
-                                                                </span>
-                                                                <span class="mrg-left-0 font-size-14 text-dark ">BABY BCK RIBS ML (₱ 0.00)</span>
-                                                            </div>
-                                                            <div class="col-md-4 text-right">
-                                                                <p class="mrg-top-10">
-                                                                    <span>(0)</span>
-                                                                    <a href="#" class="btn btn-danger btn-inverse btn-xs no-mrg-btm mrg-left-10 border-radius-4">
-                                                                        <i class="fa fa-minus"></i>
-                                                                    </a>
-                                                                    <a href="#" class="btn btn-success btn-inverse btn-xs no-mrg-btm mrg-left-10 border-radius-4">
-                                                                        <i class="fa fa-plus"></i>
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                 </div>
 
-                                <!-- <div class="mrg-top-0">
-                                    <div id="accordion-ask-1" class="accordion border-less" role="tablist" aria-multiselectable="true">
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading" role="tab">
-                                                <h4 class="panel-title">
-                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion-ask-1" href="#collapse-ask-1" aria-expanded="false">
-                                                            <span>INSTRUCTIONS(Optional)</span>
-                                                            <i class="icon ti-arrow-circle-down"></i>
-                                                        </a>
-                                                    </h4>
-                                            </div>
-                                            <div id="collapse-ask-1" class="panel-collapse collapse" style="">
-                                                <div class="panel-body">
-                                                        <textarea class="form-control" rows="3" id="instruction"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>  -->
 
-                                <!-- <div class="form-group mb-2">
-                                    <br>
-                                    <label>Select Table</label>
-                                    <select class="form-control" id="cmb-tables">
-
-                                    </select>
-                                </div>  -->
-                                <!-- <div class="form-group">
-                                    <label>Select Guest No.</label>
-                                    <select class="form-control" id="cmb-guests">
-                                    </select>
-                                </div> -->
 
                             </div>
                         </div>
@@ -145,9 +55,7 @@
                             <li class="list-inline-item">
                                 <button class="btn btn-info add-to-order" data-toggle="modal" data-target="#modal-order-review">Submit</button>
                             </li>
-                            <!-- <li class="list-inline-item">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#modal-lg">Change guest no.</button>
-                            </li> -->
+
                         </ul>
                     </div>
                 </div>
@@ -228,12 +136,7 @@
 $(document).ready(function(){
 
     getProduct();
-    // logicDisplay();
-    // inputDisplay();
 
-    // showGuestByTableId();
-    // getTables();
-    // tablesCmb();
 
 });
 
@@ -252,14 +155,7 @@ function showGuestByTableId(){
             var  guest  = y+1;
 
             container.append(
-                // '<div class="col-md-3 col-sm-3 col-3 custom-col-pad">'+
-                //     '<div class=" card  avatar-card text-center">  '+
-                //         '<div class="card-body">'+
-                //             '<span class="badge badge-pill badge-success number" >'+guest+'</span>'+
-                //             '<img data-guest-no="'+guest+'" src="/assets/images/avatar.png" class="img-fluid avatar" alt="Responsive image">'+
-                //         '</div>'+
-                //     '</div> '+
-                // '</div> '
+
 
 
                 '<div class="col-md-2 col-sm-3 col-3 custom-col-pad" >'+
@@ -292,11 +188,10 @@ function selectGuest(){
 }
 
 // checker for components
-var has_components = [false, false]; // index 1 the modifiable, index 2 the non modifiable item
+var has_components = [false, false];
 
 function getProduct(){
-    //parse
-    // let outlet = JSON.parse(getStorage('outlet'));
+
     let data = {
         product_id  : '{{ $product_id }}',
         outlet_id   : '{{ $outlet_id }}'
@@ -411,7 +306,7 @@ $('#btn-m-minus').on('click', function(){
     }
     setStorage('product_order', JSON.stringify(po));
     logicDisplay();
-    // discount();
+
 });
 
 $('#btn-m-plus').on('click', function(){
@@ -429,7 +324,7 @@ $('#btn-m-plus').on('click', function(){
     // discount();
 });
 $("#m-product-qty").on("input", function () {
-    // alert($(this).val());
+
     var po = JSON.parse( getStorage('product_order') );
     var pq =   $('#m-product-qty');
     po.qty = pq.val();
@@ -471,11 +366,7 @@ function getComponentsOfProduct(){
             return;
         }
 
-        // if(response.result.data.length > 0){
-        //     // set the component checker for components to true to true
-        //    has_components[0] = true;
-        //    componentChecker()
-        // }
+
 
         componentsDisplayer(response.result.data);
 
@@ -483,7 +374,7 @@ function getComponentsOfProduct(){
 }
 
 function getComponentsNonModifiableOfProduct(){
-    //let outlet = JSON.parse(getStorage('outlet'));
+
     let data = {
         product_id  : '{{ $product_id }}',
         outlet_id   : '{{ $outlet_id }}',
@@ -496,19 +387,14 @@ function getComponentsNonModifiableOfProduct(){
             return;
         }
 
-        // if(response.result.data.length > 0){
-        //     // set the nonmodifiable component checker for components to true
-        //    has_components[1] = true;
-        //    componentChecker();
-        // }
+
 
         var container = $('.nmc');
 
         container.empty();
         $.each(response.result.data, function(k,v){
             container.append(
-                // '<li> '+ v.description+' | ' + parseInt(v.quantity, 10) + '</li>'
-                // '<li> '+ v.description+' </li>'
+
 
                 '<li>'+
                     '<div class="panel panel-default">'+
@@ -518,15 +404,10 @@ function getComponentsNonModifiableOfProduct(){
                                         '<span class="text-info" id="nmc-'+v.parent_id+'-'+v.product_id+'">'+parseInt(v.quantity) +'</span>'+
                                         '<span> - </span>'+
                                         '<span class="text-muted"> ' +v.description+'</span>'+
-                                        // '<i class="icon ti-arrow-circle-down" data-toggle="collapse" data-parent="#accordion-cc-'+k+'" href="#collapse-nmc-'+k+'" aria-expanded="false"></i> '+
                                     '</a>'+
                                 '</div>'+
                             '</div>'+
-                            // '<div id="collapse-nmc-'+k+'" class="panel-collapse collapse" style="">'+
-                            //     '<div class="panel-body px-0"> '+
-                            //         '<textarea class="form-control " placeholder="Instructions"></textarea>'+
-                            //     '</div>'+
-                            // '</div>'+
+
                     '</div> '+
                 '</li>'
             );
@@ -557,7 +438,7 @@ function componentsDisplayer(data){
             total : (v.quantity * 0),
             part_number : v.product_partno,
             no_amount : {{ config('ambulant.no_price_diff') }} == 0 ? null : v.no_amount,
-            // instructions: '',
+
             others: []
         });
 
@@ -590,7 +471,6 @@ function componentsDisplayer(data){
 }
 
 function getComponentCategories(product_id,container, setItemsToZeroAmount){
-    // let outlet = JSON.parse(getStorage('outlet'));
     let data = {
         product_id  : product_id,
         outlet_id   : '{{ $outlet_id }}'
@@ -612,27 +492,7 @@ function componentCategoriesDisplayer(product,data,container, setItemsToZeroAmou
 
     c.empty();
 
-    /*
-    // instruction per main component
-     c.append(
-        '<textarea class="form-control comp instructions " placeholder="Instructions" id="'+product.product_id+'"></textarea>'
-    )
-    $('.comp.instructions#'+product.product_id).bind('change', function(){
-        console.log('change');
-        var po = JSON.parse( getStorage('product_order') );
-        let items = po.others;
-        let item_index = items.findIndex(main_comp => main_comp.product_id == product.product_id);
-        let item = items[item_index];
-        console.log( $(this).val() );
-        if(item.qty > 0){
-            item.instructions = $(this).val();
-        }else{
-            item.instructions = '';
-        }
 
-        setStorage('product_order', JSON.stringify(po));
-    });
-    */
 
     $.each(data, function(k,v){
 
@@ -649,43 +509,11 @@ function componentCategoriesDisplayer(product,data,container, setItemsToZeroAmou
 
         var _id = container+'-'+v.product_id;
         c.append(
-            // '<div class="row border bottom">'+
-            //     '<div class="col-md-8">'+
-            //         '</span>'+
-            //         '<span class="mrg-left-0 font-size-14 text-dark ">'+v.short_code+' (₱ '+ numberWithCommas(v.price)+')</span>'+
-            //     '</div>'+
-            //     '<div class="col-md-4 text-right">'+
-            //         '<p class="mrg-top-10">'+
-            //             '<span>(<i class="text-success" id="'+_id+'-qty">0</i> )</span>'+
-            //             '<button '+
-            //             'id="'+_id+'-minus" '+
-            //             'data-main_product_component_id="'+product.product_id+'" '+
-            //             'data-main_product_id="{{ $product_id }}" '+
-            //             'data-name="'+v.short_code+'" '+
-            //             'data-price="'+v.price+'" '+
-            //             'data-product_id="'+v.product_id+'" '+
-            //             'class="btn btn-danger btn-inverse btn-xs no-mrg-btm mrg-left-10 border-radius-4">'+
-            //                 '<i class="fa fa-minus"></i>'+
-            //             '</button> '+
-            //             '<button '+
-            //             'id="'+_id+'-plus" '+
-            //             'data-main_product_component_id="'+product.product_id+'" '+
-            //             'data-main_product_id="{{ $product_id }}" '+
-            //             'data-name="'+v.short_code+'" '+
-            //             'data-price="'+v.price+'" '+
-            //             'data-product_id="'+v.product_id+'" '+
-            //             'class="btn btn-success btn-inverse btn-xs no-mrg-btm mrg-left-10 border-radius-4">'+
-            //                 '<i class="fa fa-plus"></i>'+
-            //             '</button>'+
-            //         '</p>'+
-            //     '</div>'+
-            // '</div>'
+
 
             '<div class="row justify-content-between border bottom my-2">'+
                 '<div class="">'+
-                    // '<a class="collapsed py-1 mr-2" data-toggle="collapse" data-parent="#accordion-rem-{{ $product_id }}-'+k+'"  href="#remarks-'+product.product_id+'-'+k+'" aria-expanded="false">'+
-                    //     '<i class="icon ti-arrow-circle-down" ></i> '+
-                    // '</a>'+
+
                     '<span class="font-size-14 text-dark ">'+v.short_code+' (₱ '+ numberWithCommas(v.price)+')</span>'+
                 '</div>'+
 
@@ -718,113 +546,11 @@ function componentCategoriesDisplayer(product,data,container, setItemsToZeroAmou
                         '</div>'+
                     '</div>'+
                 '</div>'+
-                /*
-                // instruction per component
-                '<div class="col-sm-12 mb-2">'+
-                    '<div id="accordion-rem-{{ $product_id }}-'+k+'" class="accordion border-0" role="tablist" aria-multiselectable="true">'+
 
-                        '<div class="panel panel-default border-0 ">'+
-                    //         '<div class="panel-heading" role="tab">'+
-                    //             '<h5 class="panel-title">'+
-                    //                 '<a class="collapsed py-1 mr-2" data-toggle="collapse" data-parent="#remarks-cc-'+k+'" href="#remarks-'+k+'" aria-expanded="false">'+
-                    //     '<i class="icon ti-arrow-circle-down" ></i> '+
-                    // '</a>'+
-                    //              '</h5>'+
-                    //         '</div>'+
-                            '<div id="remarks-'+product.product_id+'-'+k+'" class="panel-collapse collapse" style="">'+
-                                '<div class="panel-body"> '+
-                                    '<div class="panel-body px-0"> '+
-                                        '<textarea class="form-control comp intructions" placeholder="Instructions" id="'+_id+'-ins"></textarea>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>'+
-                        '</div> '+
-                    '</div>'+
-                '</div>'+
-                */
             '</div>'
 
         );
-        // $('#'+_id+'-qty').on("input", function () {
 
-        //     var po = JSON.parse( getStorage('product_order') );
-        //     var comp_qty =   $('#'+_id+'-qty');
-        //     po.qqty = comp_qty.val();
-        //     $.each(po.others, function(kk,vv){
-        //     // if(po.qqty > vv.qty){
-        //     //     showWarning('','No Available Quantity', function(){
-        //     //         });
-        //     // }
-        //     if(vv.qty > 0){
-        //         v.qty++;
-        //         vv.qty = vv.qty - po.qqty;
-        //         vv.total = vv.price * vv.qty;
-        //     }
-
-        //     });
-
-        //     setStorage('product_order', JSON.stringify(po));
-        //     logicDisplay();
-
-        // });
-        // $('#'+_id+'-plus').on('click', function(){
-        //     // alert('i am plus');
-        //     var po = JSON.parse( getStorage('product_order') );
-        //     var comp_qty = $('#'+_id+'-qty');
-        //     po.qqty = comp_qty.val();
-        //     if(po.qqty > 0){
-        //           $.each(v.others, function(kk,vv){
-        //                   po.qqty++;
-        //                   vv.total = vv.price * vv.qty;
-        //                   vv.qty--;
-
-        //               });
-        //           }
-        //     setStorage('product_order', JSON.stringify(po));
-        //     logicDisplay();
-
-
-        // });
-        // $('#'+_id+'-minus').on('click', function(){
-        //     alert('i am minus');
-        //     // var po = JSON.parse( getStorage('product_order') );
-        //     // var comp_qty =   $('#'+_id+'-qty');
-        //     // po.qqty = comp_qty.val();
-        //     // po.qqty++;
-        //     // po.total = po.qqty * po.price;
-        //     // $.each(po.others, function(kk,vv){
-        //     //     vv.qty += v.main_product_component_qty * 1;
-        //     // });
-        //     // setStorage('product_order', JSON.stringify(po));
-        //     // logicDisplay();
-
-
-        // });
-        /*
-        // instruction per component function
-        $('#'+_id+'-ins').bind('change', function(){
-
-            var po = JSON.parse( getStorage('product_order') );
-            // get the main component
-            let items = po.others;
-            let item_index = items.findIndex(main_comp => main_comp.product_id == product.product_id);
-            let item = items[item_index];
-
-            // get the component that can be replaced
-            let item_categories = item.others;
-            let item_cat_index = item_categories.findIndex(comp_cat => comp_cat.product_id == v.product_id);
-            let item_cat = item_categories[item_cat_index];
-            console.log(item_cat);
-
-            if(item_cat.qty > 0){
-                item_cat.instructions = $(this).val();
-            }else{
-                item_cat.instructions = '';
-            }
-
-            setStorage('product_order', JSON.stringify(po));
-        });
-        */
         btnComponentCategoryMinus(_id+'-minus');
         btnComponentCategoryPlus(_id+'-plus');
         });
@@ -894,11 +620,7 @@ function btnComponentCategoryPlus(id){
 
         // check if the selected sub component category is exist in sub component
         $.each(po.others, function(k,v){
-            // console.log(
 
-            //     data.main_product_component_id,
-            //     v.main_product_component_id
-            // );
             if(data.main_product_component_id == v.main_product_component_id){
 
                 if(v.qty > 0){
@@ -942,7 +664,7 @@ function btnComponentCategoryPlus(id){
         setStorage('product_order', JSON.stringify(po));
 
         logicDisplay();
-        // inputQuantityDisplay();
+
     });
 }
 
@@ -988,8 +710,7 @@ function logicDisplay(){
                 var _id= '#'+po.product_id+'-'+v.product_id+'-categories-'+vv.product_id+'-qty';
 
                 $(_id).val(vv.qty);
-                // $(_id).text(vv.qty);
-                // vv.total = 0; //remove this line if you want the additional price of the item to be computed
+
                 grand_total += vv.total;
             });
         });
@@ -1044,15 +765,10 @@ $('input[type=radio][name=guest-type]').change(function() {
     po.guest_type = parseInt(this.value);
     setStorage('product_order', JSON.stringify(po));
 
-    // discount();
+
 });
 
-// $('#guest-no').on('change', function(){
-//     var po = JSON.parse( getStorage('product_order') );
-//     po.guest_no = parseInt(this.value);
-//     setStorage('product_order', JSON.stringify(po));
-//     discount();
-// });
+
 
 function discount(){
     var new_price = 0;
@@ -1085,7 +801,7 @@ function tablesCmb(){
 }
 
 $('.btn.btn-info.add-to-order').on('click', function(){
-    //$(this).attr('disabled','disabled');
+
 
     var po = JSON.parse( getStorage('product_order') );
     var nmc = JSON.parse( getStorage('none-modifiable-item') );
@@ -1148,7 +864,7 @@ $('.btn.btn-info.add-to-order').on('click', function(){
             $.each(v.others, function(kk,vv){
                 var _id= '#'+po.product_id+'-'+v.product_id+'-categories-'+vv.product_id+'-qty';
                 $(_id).val(vv.qty);
-                // $(_id).text(vv.qty);
+
                 totalAmount += vv.total;
             });
             modal.find('#total_amount').text( 'Total: ₱'+ numberWithCommas(totalAmount));
@@ -1158,7 +874,7 @@ $('.btn.btn-info.add-to-order').on('click', function(){
 
         modal.find('#confirm').attr('disabled',true);
         event.preventDefault();
-        //  initialize product order
+
         var po = JSON.parse( getStorage('product_order') );
         var nmc = JSON.parse( getStorage('none-modifiable-item') );
         var quantity = $('#m-product-qty');
@@ -1208,7 +924,7 @@ $('.btn.btn-info.add-to-order').on('click', function(){
 
 function getTables(){
     get('/orderslip/tables', {}, function(res){
-        // console.log(res.data.length);
+
         if(res.success == false){
             return;
         }
@@ -1231,14 +947,10 @@ function getTables(){
         }
 
         $.each(res.data, function(k,v){
-            // branch_id:
-            // created_at:
-            // orderslip_id:
-            // table_id:
-            // table_number:
+
             container.append(
                 '<option value="'+v.table_id+'">TABLE NO. '+ v.table_number +'</option>'
-                // '<option value="'+v.guest_no +'">GUEST NO. '+v.guest_no +' ('+v.guest_type +') </option>'
+
 
             );
         });
@@ -1264,7 +976,7 @@ function getGuests(table_id){
             );
         });
 
-        // var guests = JSON.stringify({asd:"asd"});
+
 
         setStorage('guests', JSON.stringify( res.data ));
         logicDisplay();

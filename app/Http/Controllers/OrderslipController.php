@@ -65,11 +65,7 @@ class OrderslipController extends Controller
                     ]);
             }
 
-            // request()->validate([
-            //     'headcount' => 'required|numeric|min:1'
-            // ]);
 
-            // $osh->orderslip_header_id       = $blin->getNewIdForOrderSlipHeader();
             $osh->orderslip_header_id       = $osh->getNewId( $branch_id, $outlet_id, $device_id );
             $osh->branch_id                 = $branch_id;
             $osh->transaction_type_id       = 1;
@@ -209,30 +205,9 @@ class OrderslipController extends Controller
 
             // check if this ambulant has an active sales order
             $aso = $user->activeOrder();
-            // dd($aso->orderslip_header_id);
-            // create slipheader
+
             $line_number = 0;
             if (is_null($aso)) {
-                //$osh->orderslip_header_id       = $osh->getNewId();
-
-                // $osh->orderslip_header_id       = $blin->getNewIdForOrderSlipHeader();
-                // $osh->branch_id                 = $branch_id;
-                // $osh->transaction_type_id       = 1;
-                // $osh->total_amount              = 0;
-                // $osh->discount_amount           = 0;
-                // $osh->net_amount                = 0;
-                // $osh->status                    = 'X'; //Pending
-
-                // $osh->created_at                = now();
-                // $osh->orig_invoice_date         = $helper->getClarionDate(now());
-                // $osh->encoded_date              = now();
-                // $osh->encoded_by                = $user->username;
-                // $osh->prepared_by               = $user->name;
-                // $osh->cce_name                  = $user->name;
-                // $osh->total_hc                  = 1;
-                // $osh->outlet_id                 = $user->duty()->storeOutlet->outlet_id;
-                // $osh->is_active                 = 1;
-                // $osh->save();
 
                 return response()->json([
                     'success'   => false,
@@ -291,29 +266,22 @@ class OrderslipController extends Controller
             } else {
                 $postmix = null;
             }
-            // end of postmix identifier
 
-            /**
-             * STATUS IDENTIFIER
-             */
             $osdStatus = 'T';
-            // if($osh->qdate != null){
-            //     $osdStatus = 'X';
-            // }
+
 
             $net_amount = 0;
-            // save each of item in slipdetails
-            $osd = new OrderSlipDetail;
-            // $osd->orderslip_detail_id           = $blin->getNewIdForOrderSlipDetails();
 
-            $dev_no_mod = null; // device id which took and modify the order
+            $osd = new OrderSlipDetail;
+
+
+            $dev_no_mod = null;
 
             if($osh->device_no == $user_device_id ){
                 $dev_no_mod = null;
             }else{
                 $dev_no_mod = $user_device_id;
-                // $osd->orderslip_detail_id           = $osd->getNewId($branch_id, $user_outlet_id, $user_device_id);
-                // $osd->orderslip_detail_id           = $osd->getNewId($branch_id, $user_outlet_id, $dev_no_mod);
+
             }
             // dd($osh->device_no);
             // DB::rollback();
@@ -360,7 +328,7 @@ class OrderslipController extends Controller
             $osd->dev_id_mod                    = $dev_no_mod;
             $osd->pos_line_no                   = $line_number;
 
-            // $osd->branch_services_id            = $osh->os_number;
+
 
 
 
@@ -369,114 +337,7 @@ class OrderslipController extends Controller
             $net_amount += $osd->net_amount;
             $line_number++;
 
-            // store modifiable components
-            // as is the qty
-            /*
-            if (isset($request->others)) {
-                foreach ($request->others as $other) {
-                    $other = (object) $other;
 
-                    if ($other->qty != 0) {
-                        $osd2 = new OrderSlipDetail;
-                        // $osd2->orderslip_detail_id           = $osd2->getNewId($branch_id, $user_outlet_id, $user_device_id);
-                        $osd2->orderslip_detail_id           = $osd2->getNewId($branch_id, $user_outlet_id, $osh->device_no);
-
-                        $osd2->orderslip_header_id           = $osh->orderslip_header_id;
-                        $osd2->branch_id                     = $branch_id;
-                        // $osd2->remarks                       = $request->instruction;
-                        // $osd2->remarks                       = $other->instructions;
-                        $osd2->order_type                    = $osd2->getOrderTypeValue($request->is_take_out);
-                        $osd2->product_id                    = $other->product_id;
-                        $osd2->qty                           = $other->qty;
-                        $osd2->srp                           = $other->price;
-                        $osd2->amount                        = $other->qty * $other->price;
-                        $osd2->net_amount                    = $other->qty * $other->price;
-                        $osd2->is_modify                     = 1;
-                        $osd2->line_number                   = $line_number;
-                        $osd2->order_no                      = $osd->line_number;
-                        $osd2->status                        = $osdStatus;
-                        $osd2->postmix_id                    = $postmix;
-                        $osd2->main_product_id               = $other->main_product_id;
-                        $osd2->main_product_comp_id          = $other->main_product_component_id;
-                        $osd2->old_comp_id                   = $other->main_product_component_id;
-                        $osd2->main_product_comp_qty         = $other->main_product_component_qty;
-                        $osd2->part_number                   = $other->part_number;
-                        $osd2->encoded_date                  = now();
-                        $osd2->sequence                      = $osd->sequence;
-                        $osd2->guest_no                      = $request->guest_no;
-                        $osd2->guest_type                    = $request->guest_type;
-
-                        $osd2->device_number                 = $osh->device_no;
-                        $osd2->outlet_id                     = $user_outlet_id;
-                        $osd2->table_no                      = $request->table_no;
-                        $osd2->kitchen_loc                   = $this->getKitchenLocation($other->product_id, $branch_id);
-                        $osd2->os_date                       = getClarionDate(now());
-                        $osd2->display_kds                   = 1;
-                        // $osd2->branch_services_id             = $osh->os_number;
-                        // $osd2->display_kds                   = 1;
-
-                        $osd2->dev_id_mod                     = $dev_no_mod;
-                        $osd2->pos_line_no                    = $line_number;
-                        // dd($osd2);
-                        $osd2->save();
-                        $net_amount += $osd2->net_amount;
-                        $line_number++;
-                    }
-
-
-
-                    if (isset($other->others)) {
-                        foreach ($other->others as $other2) {
-                            $other2 = (object) $other2;
-                            $osd3 = new OrderSlipDetail;
-                            //$osd3->orderslip_detail_id           = $osd3->getNewId($branch_id, $user_outlet_id, $user_device_id);
-                            $osd3->orderslip_detail_id           = $osd3->getNewId($branch_id, $user_outlet_id, $osh->device_no);
-
-                            $osd3->orderslip_header_id           = $osh->orderslip_header_id;
-                            $osd3->branch_id                     = $branch_id;
-                            // $osd3->remarks                       = $other2->instructions;
-                            $osd3->order_type                    = $osd3->getOrderTypeValue($request->is_take_out);
-                            $osd3->product_id                    = $other2->product_id;
-                            $osd3->qty                           = $other2->qty;
-                            $osd3->srp                           = $other2->price;
-                            $osd3->amount                        = $other2->qty * $other2->price;
-                            $osd3->net_amount                    = $other2->qty * $other2->price;
-                            $osd3->is_modify                     = 1;
-                            $osd3->line_number                   = $line_number;
-                            $osd3->order_no                      = $osd->line_number;
-                            $osd3->status                        = $osdStatus;
-                            $osd3->postmix_id                    = $postmix;
-                            $osd3->main_product_id               = $other2->main_product_id;
-                            $osd3->main_product_comp_id          = $other2->main_product_component_id;
-                            $osd3->old_comp_id                   = $other2->main_product_component_id;
-                            $osd3->main_product_comp_qty         = $other->main_product_component_qty;
-                            $osd3->part_number                   = $other2->part_number;
-                            $osd3->encoded_date                  = now();
-                            $osd3->sequence                      = $osd->sequence;
-                            $osd3->guest_no                      = $request->guest_no;
-                            $osd3->guest_type                    = $request->guest_type;
-
-                            $osd3->device_number                 = $osh->device_no;
-                            $osd3->outlet_id                     = $user_outlet_id;
-                            $osd3->table_no                      = $request->table_no;
-                            $osd3->kitchen_loc                   = $this->getKitchenLocation($other2->product_id, $branch_id);
-                            $osd3->os_date                       = getClarionDate(now());
-                            $osd3->display_kds                   = 1;
-                            // $osd3->branch_services_id            = $osh->os_number;
-                            // $osd3->display_kds                   = 1;
-                            $osd3->dev_id_mod                    = $dev_no_mod;
-                            $osd3->pos_line_no                   = $line_number;
-                            $osd3->save();
-                            $net_amount += $osd3->net_amount;
-                            $line_number++;
-                        }
-                    }
-                }
-            }
-            */
-
-            // store modifiable components
-            // if the components > 1 then set the qty as 1 for each component
             if (isset($request->others)) {
 
                 foreach ($request->others as $other) {
@@ -1189,152 +1050,7 @@ class OrderslipController extends Controller
 
 
 
-    // public function removeSelectedItem(){
-    //     // dd( request()->all() );
 
-    //     try {
-    //         DB::beginTransaction();
-    //         DB::enableQueryLog();
-
-    //         if(request()->mealstub_product_id == null){
-    //             $osd = OrderSlipDetail::where('BRANCHID', request()->branch_id)
-    //                 ->where('ORDERSLIPNO', request()->os_id)
-    //                 // ->where('ORDERSLIPDETAILID', request()->osd_id)
-    //                 ->where('MAIN_PRODUCT_ID', request()->product_id)
-    //                 ->where('DEVICENO', request()->device_id)
-    //                 ->where('OUTLETID', request()->outlet_id)
-    //                 ->where('SEQUENCE', request()->sequence)
-    //                 ->get();
-
-    //             $discount_amount_to_be_deduct = 0;
-    //             $amount_to_be_deduct = 0;
-    //             $net_amount_to_be_deduct = 0;
-    //             foreach( $osd as $key => $d){
-    //                 $amount_to_be_deduct += $d->AMOUNT;
-    //                 $net_amount_to_be_deduct += $d->NETAMOUNT;
-    //             }
-
-    //             $os = OrderSlipHeader::where('branch_id', request()->branch_id)
-    //                 ->where('orderslip_header_id', request()->os_id)
-    //                 ->where('device_no', request()->device_id)
-    //                 ->where('outlet_id', request()->outlet_id)
-    //                 ->first();
-
-    //             OrderSlipHeader::where('branch_id', request()->branch_id)
-    //                 ->where('orderslip_header_id', request()->os_id)
-    //                 ->where('device_no', request()->device_id)
-    //                 ->where('outlet_id', request()->outlet_id)
-    //                 ->update([
-    //                     'TOTALAMOUNT'       => $os->TOTALAMOUNT - $amount_to_be_deduct,
-    //                     'NETAMOUNT'         => $os->NETAMOUNT - $net_amount_to_be_deduct,
-    //                     'DISPLAYMONITOR'    => 2
-    //             ]);
-
-
-    //             OrderSlipDetail::where('branch_id', request()->branch_id)
-    //                 ->where('orderslip_header_id', request()->os_id)
-    //                 // ->where('orderslip_detail_id', request()->osd_id)
-    //                 ->where('main_product_id', request()->product_id)
-    //                 ->where('device_number', request()->device_id)
-    //                 ->where('outlet_id', request()->outlet_id)
-    //                 ->where('sequence', request()->sequence)
-    //                 ->where('status', 'T')
-    //                 ->update([
-    //                     'STATUS' => 'V',
-    //                     'DISPLAYMONITOR' => 0
-    //             ]);
-
-    //             OrderSlipDetail::where('branch_id', request()->branch_id)
-    //             ->where('orderslip_header_id', request()->os_id)
-    //             // ->where('orderslip_detail_id', request()->osd_id)
-    //             ->where('main_product_id', request()->product_id)
-    //             ->where('device_number', request()->device_id)
-    //             ->where('outlet_id', request()->outlet_id)
-    //             ->where('sequence', request()->sequence)
-    //             ->where('status', '!=', 'T')
-    //             ->update([
-    //                 'STATUS' => 'V',
-    //                 'DISPLAYMONITOR' => 1
-    //             ]);
-
-    //         }elseif(request()->mealstub_product_id != null){
-    //             $osd = OrderSlipDetail::where('BRANCHID', request()->branch_id)
-    //                 ->where('ORDERSLIPNO', request()->os_id)
-    //                 // ->where('ORDERSLIPDETAILID', request()->osd_id)
-    //                 ->where('MAIN_PRODUCT_ID', request()->product_id)
-    //                 ->where('DEVICENO', request()->device_id)
-    //                 ->where('OUTLETID', request()->outlet_id)
-    //                 ->where('SEQUENCE', request()->sequence)
-    //                 ->where('MEAL_STUB_PRODUCT_ID', request()->mealstub_product_id)
-    //                 ->get();
-
-    //             $discount_amount_to_be_deduct = 0;
-    //             $amount_to_be_deduct = 0;
-    //             $net_amount_to_be_deduct = 0;
-    //             foreach( $osd as $key => $d){
-    //                 $amount_to_be_deduct += $d->AMOUNT;
-    //                 $net_amount_to_be_deduct += $d->NETAMOUNT;
-    //             }
-
-    //             $os = OrderSlipHeader::where('branch_id', request()->branch_id)
-    //                 ->where('orderslip_header_id', request()->os_id)
-    //                 ->where('device_no', request()->device_id)
-    //                 ->where('outlet_id', request()->outlet_id)
-    //                 ->first();
-
-    //             OrderSlipHeader::where('branch_id', request()->branch_id)
-    //                 ->where('orderslip_header_id', request()->os_id)
-    //                 ->where('device_no', request()->device_id)
-    //                 ->where('outlet_id', request()->outlet_id)
-    //                 ->update([
-    //                     'TOTALAMOUNT'       => $os->TOTALAMOUNT - $amount_to_be_deduct,
-    //                     'NETAMOUNT'         => $os->NETAMOUNT - $net_amount_to_be_deduct,
-    //                     'DISPLAYMONITOR'    => 2,
-    //                     'MEAL_STUB_COUNT'   => $os->MEAL_STUB_COUNT - 1
-
-    //             ]);
-
-
-    //             OrderSlipDetail::where('branch_id', request()->branch_id)
-    //                 ->where('orderslip_header_id', request()->os_id)
-    //                 // ->where('orderslip_detail_id', request()->osd_id)
-    //                 // ->where('main_product_id', request()->product_id)
-    //                 ->where('device_number', request()->device_id)
-    //                 ->where('outlet_id', request()->outlet_id)
-    //                 ->where('sequence', request()->sequence)
-    //                 ->where('MEAL_STUB_PRODUCT_ID', request()->mealstub_product_id)
-    //                 ->update([
-    //                     'STATUS' => 'V',
-    //                     'DISPLAYMONITOR' => 1
-    //             ]);
-    //         }
-
-    //         \Log::debug( DB::getQueryLog() );
-    //         DB::commit();
-    //         return response()->json([
-    //             'success'   => true,
-    //             'status'    => 201,
-    //             'message'   => 'Success'
-    //         ]);
-
-    //     } catch (\Exception $e) {
-    //         DB::rollBack();
-    //         Log::error($e->getMessage());
-    //         return response()->json([
-    //             'message'   => 'SERVER ERROR'
-    //         ], 500);
-    //     }
-
-
-
-    //     return response()->json([
-    //         'message' => 'Remove Successfully'
-    //     ]);
-    // }
-
-    /**
-     * check if the orderslip is already paid
-     */
     public function checkOsPaid(Request $request){
 
         $osh = OrderSlipHeader::orderIsPaid($request->header_id, $request->branch_id, $request->outlet_id, $request->device_id);
@@ -1357,7 +1073,7 @@ class OrderslipController extends Controller
 
             try {
                 DB::beginTransaction();
-                // DB::enableQueryLog();
+
 
                 $osh = OrderSlipHeader::orderIsPaid(request()->header_id, request()->branch_id, request()->outlet_id, request()->device_id);
                 if(!isset($osh)){
@@ -1380,7 +1096,7 @@ class OrderslipController extends Controller
                 if(request()->mealstub_product_id == null){
                     $osd = OrderSlipDetail::where('BRANCHID', request()->branch_id)
                         ->where('ORDERSLIPNO', request()->header_id)
-                        // ->where('ORDERSLIPDETAILID', request()->osd_id)
+
                         ->where('MAIN_PRODUCT_ID', request()->product_id)
                         ->where('DEVICENO', request()->device_id)
                         ->where('OUTLETID', request()->outlet_id)
@@ -1401,7 +1117,6 @@ class OrderslipController extends Controller
                         ->where('outlet_id', request()->outlet_id)
                         ->first();
 
-                    // dd(os)
                     OrderSlipHeader::where('branch_id', request()->branch_id)
                         ->where('orderslip_header_id', request()->header_id)
                         ->where('device_no', request()->device_id)
@@ -1414,7 +1129,7 @@ class OrderslipController extends Controller
 
                     OrderSlipDetail::where('branch_id', request()->branch_id)
                     ->where('orderslip_header_id', request()->header_id)
-                    // ->where('orderslip_detail_id', request()->osd_id)
+
                     ->where('main_product_id', request()->product_id)
                     ->where('device_number', request()->device_id)
                     ->where('outlet_id', request()->outlet_id)
@@ -1427,7 +1142,7 @@ class OrderslipController extends Controller
 
                     $osd_delete = OrderSlipDetail::where('branch_id', request()->branch_id)
                     ->where('orderslip_header_id', request()->header_id)
-                    // ->where('orderslip_detail_id', request()->osd_id)
+
                     ->where('main_product_id', request()->product_id)
                     ->where('device_number', request()->device_id)
                     ->where('outlet_id', request()->outlet_id)
@@ -1465,7 +1180,7 @@ class OrderslipController extends Controller
                 }elseif(request()->mealstub_product_id != null){
                     $osd = OrderSlipDetail::where('BRANCHID', request()->branch_id)
                         ->where('ORDERSLIPNO', request()->header_id)
-                        // ->where('ORDERSLIPDETAILID', request()->osd_id)
+
                         ->where('MAIN_PRODUCT_ID', request()->product_id)
                         ->where('DEVICENO', request()->device_id)
                         ->where('OUTLETID', request()->outlet_id)
@@ -1501,8 +1216,7 @@ class OrderslipController extends Controller
 
                     OrderSlipDetail::where('branch_id', request()->branch_id)
                         ->where('orderslip_header_id', request()->header_id)
-                        // ->where('orderslip_detail_id', request()->osd_id)
-                        // ->where('main_product_id', request()->product_id)
+
                         ->where('device_number', request()->device_id)
                         ->where('outlet_id', request()->outlet_id)
                         ->where('sequence', request()->sequence)
@@ -1516,8 +1230,7 @@ class OrderslipController extends Controller
                     // if there are deleted rows then reset the line no and the pos line no
                     $osd_delete = OrderSlipDetail::where('branch_id', request()->branch_id)
                         ->where('orderslip_header_id', request()->header_id)
-                        // ->where('orderslip_detail_id', request()->osd_id)
-                        // ->where('main_product_id', request()->product_id)
+
                         ->where('device_number', request()->device_id)
                         ->where('outlet_id', request()->outlet_id)
                         ->where('sequence', request()->sequence)
@@ -1552,7 +1265,6 @@ class OrderslipController extends Controller
 
                 }
 
-                // \Log::debug( DB::getQueryLog() );
                 DB::commit();
                 return response()->json([
                     'success'   => true,
@@ -1634,7 +1346,7 @@ class OrderslipController extends Controller
             DB::beginTransaction();
             DB::enableQueryLog();
 
-            // check
+
             $os = OrderSlipHeader::where('branch_id', $request->branch_id)
                     ->where('orderslip_header_id', $request->os_id)
                     ->where('device_no', $request->device_id)
@@ -1642,7 +1354,7 @@ class OrderslipController extends Controller
                     ->first();
 
             if($os->qdate == null){
-                // \Log::debug('TIMEOUT IS NOT SET YET');
+
 
                 OrderSlipHeader::where('branch_id', $request->branch_id)
                     ->where('orderslip_header_id', $request->os_id)
@@ -1679,7 +1391,6 @@ class OrderslipController extends Controller
                 $this->setPaidMealStubs($request->branch_id, $request->outlet_id, $request->device_id, $os);
             }
 
-            // \Log::debug( DB::getQueryLog() );
             DB::commit();
             return response()->json([
                 'success'   => true,
