@@ -210,6 +210,9 @@
                                     return 'Quantity is invalid'
                                 }
                             },
+                            onBeforeOpen: (input) => {
+    input.value = '';
+  },
                             showCancelButton: true,
                             confirmButtonText: 'Save',
                             showLoaderOnConfirm: true,
@@ -555,7 +558,7 @@
                         Swal.fire({
                             title: 'Enter HeadCount',
                             input: 'number',
-                            inputValue: 0,
+                            inputValue: '',
                             inputAttributes: {
                                 autocapitalize: 'off',
                                 min: 1
