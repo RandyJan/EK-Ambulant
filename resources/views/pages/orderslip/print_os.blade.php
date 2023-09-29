@@ -245,38 +245,63 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $mealstub_pro = null; $mealstub_sn=null;
-                        @endphp
-                        @foreach(Auth::user()->activeOrder()->printComponents() as $detail)
+                            {{-- @php
+                                $mealstub_pro = null; $mealstub_sn=null;
+                            @endphp
+                            @foreach(Auth::user()->activeOrder()->printComponents() as $detail)
 
-                            @if($detail->mealstub_product_id != null && $detail->main_product_comp_id != null && $detail->main_product_component)
-                            @else
-                                @if($detail->mealstub_serialnumber != null)
-                                    @if( $detail->mealstub_serialnumber != $mealstub_sn)
+                                @if($detail->mealstub_product_id != null && $detail->main_product_comp_id != null && $detail->main_product_component)
+                                @else
+                                    @if($detail->mealstub_serialnumber != null)
+                                        @if( $detail->mealstub_serialnumber != $mealstub_sn)
+                                        <tr class="cart-item stub">
+                                            <td></td>
+                                            <td>{{number_format(1)}}</td>
+                                            <td class="">CS-{{ chunk_split($detail->mealstub_serialnumber, 18) }}</td>
+                                        </tr>
+                                            @php $mealstub_sn = $detail->mealstub_serialnumber; @endphp
+                                        @endif
+                                    @endif
+                                    <tr>
+                                        <td><i class="{{ $detail->order_type == 1 ? 'fa fa-dot-circle-o text-primary' : 'fa fa-shopping-bag text-primary' }}"></i> </td>
+                                        <td>{{number_format($detail->qty)}}</td>
+                                        <td>
+                                            {!! $detail->product_id != $detail->main_product_id ? '&nbsp;&nbsp;&nbsp;-':'' !!}
+
+                                            {!! ( $detail->mealstub_product_id != null && $detail->product_id == $detail->main_product_id ? ($detail->mealstub_product_id != $detail->product_id ? "-":''):'' ) !!}
+
+                                            {{ chunk_split($detail->sitePart->product_name,18) }}
+
+                                        </td>
+                                    </tr>
+                                @endif
+
+                            @endforeach --}}
+                            @php
+                            $mealstub_sn = null;
+                        @endphp
+
+                        @foreach(Auth::user()->activeOrder()->printComponents() as $detail)
+                            @if($detail->mealstub_serialnumber != null && $detail->main_product_comp_id == null && !$detail->main_product_component)
+                                @if($detail->mealstub_serialnumber != $mealstub_sn)
                                     <tr class="cart-item stub">
                                         <td></td>
-                                        <td>{{number_format(1)}}</td>
+                                        <td>{{ number_format(1) }}</td>
                                         <td class="">CS-{{ chunk_split($detail->mealstub_serialnumber, 18) }}</td>
                                     </tr>
-                                        @php $mealstub_sn = $detail->mealstub_serialnumber; @endphp
-                                    @endif
+                                    @php $mealstub_sn = $detail->mealstub_serialnumber; @endphp
                                 @endif
-                                <tr>
-                                    <td><i class="{{ $detail->order_type == 1 ? 'fa fa-dot-circle-o text-primary' : 'fa fa-shopping-bag text-primary' }}"></i> </td>
-                                    <td>{{number_format($detail->qty)}}</td>
-                                    <td>
-                                        {!! $detail->product_id != $detail->main_product_id ? '&nbsp;&nbsp;&nbsp;-':'' !!}
-
-                                        {!! ( $detail->mealstub_product_id != null && $detail->product_id == $detail->main_product_id ? ($detail->mealstub_product_id != $detail->product_id ? "-":''):'' ) !!}
-
-                                        {{ chunk_split($detail->sitePart->product_name,18) }}
-
-                                    </td>
-                                </tr>
+                            @else
+                                @if($detail->sitepart->postmix == 1)
+                                    <tr>
+                                        <td><i class="{{ $detail->order_type == 1 ? 'fa fa-dot-circle-o text-primary' : 'fa fa-shopping-bag text-primary' }}"></i></td>
+                                        <td>{{ number_format($detail->qty) }}</td>
+                                        <td>{{ chunk_split($detail->sitepart->product_name, 18) }}</td>
+                                    </tr>
+                                @endif
                             @endif
-
                         @endforeach
+
 
                     </tbody>
                 </table>
@@ -409,7 +434,8 @@ function refresh() {
 
         });
 
-
+        // var test = document.getElementById("test");
+        // console.log(test.value);
     </script>
 </body>
 

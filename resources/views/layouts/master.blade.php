@@ -600,20 +600,21 @@
                                         console.log(ress);
 
                                         $('#os-iframe').attr('src', function (i, val) {
-    return val;
-}).on('load', function() {
-    $('#os-iframe').get(0).contentWindow.print();
+                                        return val;
+                                    }).on('load', function() {
+                                        $('#os-iframe').get(0).contentWindow.print();
 
-    var handlePrintDialogClose = function() {
-        console.log('Print dialog closed');
-        window.location.href = '/';
-        window.removeEventListener('focus', handlePrintDialogClose);
-    };
-    window.addEventListener('focus', handlePrintDialogClose);
-});
- });
-   });
+                                        var handlePrintDialogClose = function() {
+                                            console.log('Print dialog closed');
+                                            window.location.href = '/';
+                                            window.removeEventListener('focus', handlePrintDialogClose);
+                                        };
+                                        window.addEventListener('focus', handlePrintDialogClose);
+                                    });
+                                    });
+                                    });
 
+                                    printiftheresvalue();
 
 
                             }
@@ -624,19 +625,19 @@
                     }
                     printiftheresvalue();
                     function printiftheresvalue() {
-                        data._method = 'PATCH';
-                    post('/', data, function(ress){
+                        // data._method = 'PATCH';
+                    // post('/', data, function(ress){
 
                         $("#os-iframe").get(0).contentWindow.print();
                         var handlePrintDialogClose = function() {
         console.log('Print dialog closed');
-        window.location.href = '{{ route('orderslip.create') }}';
+        window.location.href = '/';
         window.removeEventListener('focus', handlePrintDialogClose);
     };
     window.addEventListener('focus', handlePrintDialogClose);
 
 
-                    });
+                    // });
 
 
                     }

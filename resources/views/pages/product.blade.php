@@ -206,7 +206,7 @@ function getProduct(){
 
 
         displayProduct(response.result,response.base_url);
-        getComponentsOfProduct();
+        // getComponentsOfProduct();
         getComponentsNonModifiableOfProduct();
     });
 }
@@ -225,8 +225,8 @@ function displayProduct(data, base_url){
         price               : data.price,
         qty                 : 1,
         main_product_id     : parseInt(data.product_id),
-        main_product_component_id   : null,
-        main_product_component_qty  : null,
+        // main_product_component_id   : null,
+        // main_product_component_qty  : null,
         total               : (1 * data.price),
         instruction         : "",
         is_take_out         : false,

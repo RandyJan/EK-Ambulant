@@ -1043,7 +1043,7 @@ class OrderslipController extends Controller
                         ->get();
         $main_prod = OrderSlipDetail::where('main_product_id',$active->main_product_id)
         ->get();
-
+LOG::info($main_prod);
         return view('/pages/orderslip/print_os',compact('orderslipdetail','main_prod'));
     }
 
