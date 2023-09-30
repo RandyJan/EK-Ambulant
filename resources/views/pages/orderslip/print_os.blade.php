@@ -324,8 +324,9 @@
                     {{-- end template --}}
 
                     @if( request()->cookie('barcode_type') == "QRCODE")
-                        <div id="qrcode" data-barcode="{{trim(Auth::user()->activeOrder()->os_no)}}"></div>
+                       <center> <div id="qrcode" data-barcode="{{trim(Auth::user()->activeOrder()->os_no)}}"></div></center>
                     @else
+
                         <div class="barcode-cont"  data-barcode-val="{{ trim(Auth::user()->activeOrder()->os_no) }}">
                             <svg class="barcode"
                                 jsbarcode-format="{{ strtolower(request()->cookie('barcode_type')) }}"
@@ -340,16 +341,23 @@
                                 >
                             </svg>
                         </div>
+
                     @endif
                 </div>
             </div>
             <!--End Table-->
-
+            <div>
+                <br>
+                <br>
+               <center>  - - - - - - - - - - - - - - - - - - - - - - - - - - -  </center>
+                        </div>
             <footer style="height: 70px">
+
             </footer>
 
         </div>
         <!--End InvoiceBot-->
+
     </div>
     @endif
 
