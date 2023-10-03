@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}"> 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') | {{ config('app.name') }}</title>
 
     <!-- Favicon -->
@@ -106,7 +106,7 @@
             <!-- Page Container START -->
             <div class="page-container">
 
-                @include('layouts.browser.topnav')  
+                @include('layouts.browser.topnav')
                 <!-- Theme Toggle Button START -->
                 {{-- <button class="theme-toggle btn btn-rounded btn-icon">
                     <i class="ti-palette"></i>
@@ -212,15 +212,15 @@
     <script src="/assets/js/vendor.js"></script>
     <script src="/assets/js/app.min.js"></script>
     <script src="/js/plugins/iziToast.min.js"></script>
-    
 
-    <script src="/bower_components/selectize/dist/js/standalone/selectize.min.js"></script> 
- 
+
+    <script src="/bower_components/selectize/dist/js/standalone/selectize.min.js"></script>
+
     <script src="/assets/js/sweetalert2@9.7.1.min.js"></script>
     <script src="/js/plugins/vfs_fonts.js"></script>
     <script src="/js/config.js"></script>
-    <script src="https://code.jquery.com/ui/1.10.0/jquery-ui.js"></script> 
-    <!-- page js --> 
+    <script src="/js/jquery-ui.js"></script>
+    <!-- page js -->
     @yield('js')
 </body>
 
