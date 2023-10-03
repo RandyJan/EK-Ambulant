@@ -53,7 +53,7 @@
                                 TOTAL : 0.00
                             </li>
                             <li class="list-inline-item">
-                                <button class="btn btn-info add-to-order" data-toggle="modal" data-target="#modal-order-review">Submit</button>
+                                <button class="btn btn-info add-to-order" onclick="addtoOrder()">Submit</button>
                             </li>
 
                         </ul>
@@ -869,10 +869,10 @@ $('.btn.btn-info.add-to-order').on('click', function(){
             });
             modal.find('#total_amount').text( 'Total: ₱'+ numberWithCommas(totalAmount));
     });
+function addtoOrder(){
+    // document.getElementById("confirm");
 
-    modal.find('#confirm').on('click',function(event){
-
-        modal.find('#confirm').attr('disabled',true);
+        // modal.find('#confirm').attr('disabled',true);
         event.preventDefault();
 
         var po = JSON.parse( getStorage('product_order') );
@@ -916,9 +916,9 @@ $('.btn.btn-info.add-to-order').on('click', function(){
                     });
             });
 
-    });
+    }
 
-    modal.modal('toggle');
+
 
 });
 
@@ -989,5 +989,53 @@ $('#cmb-guests').on('change', function(){
     discount();
 });
 
+function addtoOrder(){
+    // document.getElementById("confirm");
+
+        // modal.find('#confirm').attr('disabled',true);
+        event.preventDefault();
+
+        var po = JSON.parse( getStorage('product_order') );
+        var nmc = JSON.parse( getStorage('none-modifiable-item') );
+        var quantity = $('#m-product-qty');
+
+            if( quantity.val().trim() == 0){
+                showWarning('','Quantity is invalid!', function(){
+                });
+                return;
+            }
+
+        po.qty=quantity.val();
+        po.total = po.qty * po.price;
+        setStorage('product_order', JSON.stringify(po));
+        logicDisplay();
+        po.none_modifiable_component = nmc
+        po.table_no = '';
+        po.guest_no = '';
+
+            post('/orderslip',po, function(response){
+
+                if(response.success == false){
+                    showWarning('',response.message, function(){
+                    });
+                    return;
+                }
+                //    modal.modal('toggle');
+                   Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Successfully added to cart',
+                    showConfirmButton: false,
+                    timer: 1000
+                    }).then(function() {
+                        if(getStorage('selected-category') == null){
+                            redirectTo("/category");
+                        }else{
+                            redirectTo("/category/" + getStorage('selected-category') + "/products");
+                        }
+                    });
+            });
+
+    }
 </script>
 @endsection
